@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI Smart Crop Advisor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .dashboard-section {
+            padding: 120px 20px 60px;
+            min-height: 100vh;
+            background-color: var(--bg-dark);
+        }
+        .dashboard-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .dashboard-header h1 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .dashboard-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        .table-container {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            overflow-x: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        th {
+            font-family: var(--font-heading);
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        td {
+            color: var(--text-light);
+        }
+        .crop-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(76, 175, 80, 0.15);
+            color: #4CAF50;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+        }
+        .btn-new-pred {
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="/" class="nav-logo" id="nav-logo">
+                <div class="logo-icon">🌱</div>
+                <span>AI Smart Crop Advisor</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#recommend">Predict</a></li>
+                <li><a href="/logout" class="btn btn-outline nav-cta">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard-section">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Welcome, {{ session.get('username') }}!</h1>
+                <p>Here is your crop prediction history</p>
+            </div>
+            
+            <div class="table-container">
+                {% if predictions %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>City</th>
+                            <th>N-P-K (pH)</th>
+                            <th>Weather</th>
+                            <th>Recommended Crop</th>
+                            <th>Confidence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pred in predictions %}
+                        <tr>
+                            <td>{{ pred.created_at.strftime('%Y-%m-%d %H:%M') if pred.created_at else 'N/A' }}</td>
+                            <td>{{ pred.city }}</td>
+                            <td>{{ pred.nitrogen }}-{{ pred.phosphorus }}-{{ pred.potassium }} ({{ pred.ph }})</td>
+                            <td>{{ pred.temperature }}°C, {{ pred.humidity }}%</td>
+                            <td><span class="crop-badge">{{ pred.predicted_crop }}</span></td>
+                            <td>{{ pred.confidence }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <div class="no-data">
+                    <i class="fas fa-seedling" style="font-size: 3rem; margin-bottom: 15px; color: rgba(255,255,255,0.1);"></i>
+                    <h3>No predictions yet</h3>
+                    <p>You haven't made any crop predictions yet.</p>
+                    <a href="/#recommend" class="btn btn-primary btn-new-pred">Make your first prediction</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+</body>
+</html>
