@@ -1,226 +1,132 @@
-# 🌱 Smart Crop Recommendation System
+<div align="center">
+  <h1>🌱 AI-Powered Smart Crop Advisor</h1>
+  <p><strong>Intelligent Crop Recommendation System using Machine Learning & Real-Time Weather Data</strong></p>
+  
+  <p>
+    <img src="https://img.shields.io/badge/Python-3.8+-blue.svg" alt="Python Version">
+    <img src="https://img.shields.io/badge/Flask-Web_Framework-black?logo=flask" alt="Flask">
+    <img src="https://img.shields.io/badge/Machine_Learning-Random_Forest-green" alt="Machine Learning">
+    <img src="https://img.shields.io/badge/Database-MySQL-orange?logo=mysql" alt="MySQL">
+    <img src="https://img.shields.io/badge/API-OpenWeatherMap-red" alt="API">
+  </p>
+</div>
 
-> **AI-powered crop predictions using Random Forest ML + OpenWeatherMap API**
+<br>
 
-A complete Machine Learning web application that recommends the best crop to grow based on soil nutrients (N, P, K, pH) and real-time weather data fetched from OpenWeatherMap API.
+A complete Full-Stack Machine Learning web application that analyzes soil nutrients (Nitrogen, Phosphorus, Potassium, pH) and fetches real-time weather data to recommend the most suitable crop for your farm.
+
+---
+
+## ✨ Key Features
+
+- 🤖 **Machine Learning (Random Forest):** Highly accurate model trained on 22 different crop varieties.
+- 🌤️ **Real-Time Weather Integration:** Automatically fetches live temperature and humidity for the user's city via the OpenWeatherMap API.
+- 🔐 **User Authentication:** Secure Signup/Login system with password hashing (`werkzeug.security`).
+- 📈 **Personalized Dashboard:** Registered users can track and view their historical crop predictions.
+- 🗄️ **Relational Database:** MySQL integration to store user profiles and prediction histories safely.
+- 🎨 **Premium UI:** Fully responsive, modern Glassmorphism dark-theme design.
 
 ---
 
 ## 📸 Screenshots
 
-### Features Section
-![Features](static/images/screenshot-features.png)
+*(Add screenshots of your project here by placing them in the `static/images/` folder)*
 
-### Prediction Result
-![Prediction](static/images/screenshot-prediction.png)
-
----
-
-## 🚀 Features
-
-| Feature | Description |
-|---------|-------------|
-| 🤖 **Random Forest ML** | Trained on 22 crop types with 7 features |
-| 🌤️ **Weather API** | Auto-fetches temperature & humidity via OpenWeatherMap |
-| 🧪 **Soil Analysis** | Input N, P, K, and pH for data-driven results |
-| 📊 **Confidence Score** | Shows prediction confidence percentage |
-| 🎨 **Premium UI** | Dark theme with glassmorphism and animations |
-| 📱 **Responsive** | Works on desktop, tablet, and mobile |
+- **Homepage & Features:** `![Home](static/images/screenshot-features.png)`
+- **Prediction Result:** `![Result](static/images/screenshot-prediction.png)`
+- **User Dashboard:** `![Dashboard](static/images/screenshot-dashboard.png)`
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
-- **Backend**: Python Flask
-- **Machine Learning**: scikit-learn (Random Forest Classifier)
-- **API**: OpenWeatherMap API
-- **Model Storage**: Pickle
-- **Data Processing**: Pandas, NumPy
+| Category | Technologies Used |
+|----------|-------------------|
+| **Frontend** | HTML5, CSS3, Vanilla JavaScript |
+| **Backend** | Python, Flask, Flask-Session |
+| **Database** | MySQL, mysql-connector-python |
+| **Machine Learning** | Scikit-Learn (Random Forest Classifier), Pandas, NumPy |
+| **External Services** | OpenWeatherMap REST API |
 
 ---
 
-## 📁 Folder Structure
+## ⚙️ Local Setup & Installation
 
-```
-Smart Crop Recommendation System/
-│
-├── app.py                  # Flask backend (main server)
-├── train_model.py          # ML model training script
-├── requirements.txt        # Python dependencies
-├── README.md               # This file
-│
-├── dataset/
-│   └── crop_data.csv       # Training dataset (22 crops, 330 samples)
-│
-├── model/
-│   ├── crop_model.pkl      # Trained Random Forest model
-│   └── label_encoder.pkl   # Label encoder for crop names
-│
-├── templates/
-│   └── index.html          # Main HTML template
-│
-└── static/
-    ├── css/
-    │   └── style.css       # Premium dark-theme stylesheet
-    ├── js/
-    │   └── main.js         # Frontend JavaScript logic
-    └── images/             # Image assets
-```
+Follow these steps to run the project on your local machine.
 
----
+### 1. Prerequisites
+- Python 3.8+ installed
+- MySQL Server installed and running
+- Free API key from [OpenWeatherMap](https://openweathermap.org/api)
 
-## ⚙️ How To Run (Step-by-Step)
-
-### Prerequisites
-- Python 3.8 or higher installed
-- Internet connection (for weather API)
-
-### Step 1: Clone / Download the Project
+### 2. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/smart-crop-advisory.git
-cd smart-crop-advisory
+git clone https://github.com/Prajwal201204/AI-SMART-CROP-ADVISOR.git
+cd AI-SMART-CROP-ADVISOR
 ```
 
-### Step 2: Create a Virtual Environment (Recommended)
+### 3. Setup Virtual Environment
 ```bash
 python -m venv .venv
-```
-
-### Step 3: Activate the Virtual Environment
-**Windows:**
-```bash
+# Windows
 .venv\Scripts\activate
-```
-**Mac/Linux:**
-```bash
+# Mac/Linux
 source .venv/bin/activate
 ```
 
-### Step 4: Install Dependencies
+### 4. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 5: Train the ML Model
+### 5. Configure Environment Variables
+Open the `.env` file and configure your database and API credentials:
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_mysql_password
+DB_NAME=smart_crop_dp
+OPENWEATHER_API_KEY=your_api_key_here
+SECRET_KEY=your_secret_flask_key
+```
+
+### 6. Train the Machine Learning Model
+*(If the `.pkl` files are not present in the `/model` folder)*
 ```bash
 python train_model.py
 ```
-This will:
-- Load the crop dataset (330 samples, 22 crops)
-- Train a Random Forest Classifier
-- Print accuracy report
-- Save `crop_model.pkl` and `label_encoder.pkl` in `/model/`
 
-### Step 6: (Optional) Add Your Weather API Key
-1. Go to [OpenWeatherMap](https://openweathermap.org/api) and sign up (free)
-2. Get your API key
-3. Open `app.py` and replace:
-```python
-API_KEY = "YOUR_API_KEY_HERE"
-```
-with your actual key:
-```python
-API_KEY = "your_actual_api_key_here"
-```
-> **Note:** The app works without a real API key — it uses demo weather data.
-
-### Step 7: Run the Flask Server
+### 7. Run the Application
+The backend will automatically create the required MySQL tables (`users` and `predictions`) on startup.
 ```bash
 python app.py
 ```
-
-### Step 8: Open in Browser
-Navigate to: **http://localhost:5000**
+**Access the app at:** `http://localhost:5000`
 
 ---
 
-## 🧪 How It Works
+## 🧪 System Architecture & Flow
 
-```
-User Inputs                    OpenWeatherMap API
-(N, P, K, pH, City)    →     (Temperature, Humidity)
-         ↘                         ↙
-         All 7 Features Combined
-                  ↓
-         Random Forest Model
-                  ↓
-         Best Crop Prediction
-         (with Confidence %)
-```
-
-1. User enters soil nutrients (N, P, K, pH) and city name
-2. Backend calls OpenWeatherMap API to get temperature & humidity
-3. All 7 features are fed to the trained Random Forest model
-4. Model predicts the best crop with a confidence score
-5. Result is displayed with weather info and crop details
-
----
-
-## 📊 Dataset Information
-
-| Column | Description | Range |
-|--------|-------------|-------|
-| N | Nitrogen content (kg/ha) | 0-200 |
-| P | Phosphorus content (kg/ha) | 0-200 |
-| K | Potassium content (kg/ha) | 0-200 |
-| temperature | Temperature (°C) | 18-41 |
-| humidity | Humidity (%) | 13-97 |
-| ph | Soil pH value | 4.1-7.95 |
-| rainfall | Rainfall (mm) | 17-271 |
-| label | Crop name | 22 types |
-
-**Supported Crops:** Rice, Maize, Chickpea, Kidney Beans, Pigeon Peas, Moth Beans, Mung Bean, Black Gram, Lentil, Pomegranate, Banana, Mango, Grapes, Watermelon, Muskmelon, Apple, Orange, Papaya, Coconut, Cotton, Jute, Coffee
-
----
-
-## 🔌 API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/` | Homepage with input form |
-| POST | `/predict` | Predict crop (JSON body) |
-| GET | `/weather?city=Mumbai` | Fetch weather data |
-
-### POST /predict — Request Body
-```json
-{
-  "N": 90,
-  "P": 42,
-  "K": 43,
-  "ph": 6.5,
-  "city": "Mumbai"
-}
-```
-
-### POST /predict — Response
-```json
-{
-  "success": true,
-  "crop": "Coffee",
-  "confidence": 30.0,
-  "emoji": "☕",
-  "season": "Year-round",
-  "water_need": "Medium",
-  "weather": {
-    "temperature": 25.5,
-    "humidity": 71.0,
-    "city": "Mumbai",
-    "description": "Demo mode"
-  }
-}
+```mermaid
+graph TD
+    A[User Inputs: N, P, K, pH, City] --> B(Flask Backend)
+    B --> C{OpenWeatherMap API}
+    C -->|Fetch Temp & Humidity| D[Combine 7 Features]
+    D --> E[Random Forest ML Model]
+    E --> F[Crop Prediction & Confidence %]
+    F --> G[(MySQL Database)]
+    G --> H[Display Result on UI]
 ```
 
 ---
 
-## 👨‍💻 Authors
+## 👨‍💻 Developer
 
-- **Prajwal Newase**
+- **Prajwal Newase**  
+  [GitHub Profile](https://github.com/Prajwal201204)
 
 ---
 
 ## 📄 License
-
-This project is built as a personal portfolio project.
-
-© 2026 Smart Crop Recommendation System. All rights reserved.
+This project was developed as an independent portfolio project. 
+© 2026 AI Smart Crop Advisor. All rights reserved.
