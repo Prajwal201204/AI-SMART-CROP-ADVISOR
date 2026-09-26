@@ -30,11 +30,18 @@ A complete Full-Stack Machine Learning web application that analyzes soil nutrie
 
 ## 📸 Screenshots
 
-*(Add screenshots of your project here by placing them in the `static/images/` folder)*
-
-- **Homepage & Features:** `![Home](static/images/screenshot-features.png)`
-- **Prediction Result:** `![Result](static/images/screenshot-prediction.png)`
-- **User Dashboard:** `![Dashboard](static/images/screenshot-dashboard.png)`
+- **Main Homepage:**
+  <img src="static/images/screenshot_1.png" alt="Homepage" width="800">
+  
+- **Prediction Result:**
+  <img src="static/images/screenshot_2.png" alt="Prediction Result" width="800">
+  
+- **User Dashboard:**
+  <img src="static/images/screenshot_3.png" alt="Dashboard" width="800">
+  
+- **Additional Views:**
+  <img src="static/images/screenshot_4.png" alt="View 4" width="800">
+  <img src="static/images/screenshot_5.png" alt="View 5" width="800">
 
 ---
 
