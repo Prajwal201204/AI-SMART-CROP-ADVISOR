@@ -129,8 +129,12 @@ graph TD
 
 ## 👨‍💻 Developer
 
-- **Prajwal Newase**  
-  [GitHub Profile](https://github.com/Prajwal201204)
+**Prajwal Nevase**
+
+- 📧 **Email:** [prajwalnevase2004@gmail.com](mailto:prajwalnevase2004@gmail.com)
+- 💼 **LinkedIn:** [Prajwal Nevase](https://www.linkedin.com/in/prajwal-nevase-b47585341)
+- 🐙 **GitHub:** [@Prajwal201204](https://github.com/Prajwal201204)
+- 📍 **Location:** Maharashtra, India
 
 ---
 
